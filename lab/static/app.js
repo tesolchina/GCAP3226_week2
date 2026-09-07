@@ -18,7 +18,7 @@ let busy = false;
 /* ---------- health ---------- */
 async function health() {
   try {
-    const r = await fetch("/api/health");
+    const r = await fetch("api/health");
     const j = await r.json();
     $("healthBadge").textContent = `demo ready: ${j.demo}`;
     $("healthBadge").classList.add("ok");
@@ -33,7 +33,7 @@ async function analyse(body, filename) {
   note.classList.remove("err");
   note.textContent = `Analysing ${filename || "demo week2.csv"} …`;
   try {
-    const r = await fetch("/api/analyze", {
+    const r = await fetch("api/analyze", {
       method: "POST",
       headers: body ? { "Content-Type": "text/csv" } : undefined,
       body: body || undefined,
