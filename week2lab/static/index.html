@@ -10,8 +10,9 @@
 <header class="top">
   <div>
     <div class="kicker">GCAP 3226 · Week 2 · Data visualization</div>
-    <h1>Week 2 Lab — upload a CSV, read the charts, read the code.</h1>
+    <h1>Week 2 Lab — upload the data, read the charts, read the code.</h1>
     <p class="sub">The plots you make in <code>W2_S2_data_visualization.ipynb</code>, without typing the code.
+      First <strong>download <code>week2.csv</code> from this GitHub repo</strong>, then upload it here.
       The GUI writes the Python for you — then shows you the workflow and pseudocode so you can
       write it yourself next time.</p>
   </div>
@@ -19,18 +20,19 @@
 </header>
 
 <main>
-  <!-- ================= Data rail ================= -->
+  <!-- ================= Upload ================= -->
   <section class="rail card">
-    <h2>1 · Your data</h2>
+    <h2>1 · Upload week2.csv</h2>
     <div id="drop" class="drop">
-      <p class="drop-main">Drop a CSV here, or</p>
-      <label class="btn secondary" for="fileInput">Choose a CSV file</label>
+      <p class="drop-main">Drop the CSV here, or</p>
+      <label class="btn secondary" for="fileInput">Choose week2.csv</label>
       <input type="file" id="fileInput" accept=".csv,text/csv" hidden>
       <p class="hint" id="fileHint">No file selected</p>
     </div>
-    <p class="or">— or use this week’s survey —</p>
-    <button class="btn" id="demoBtn" type="button">Analyse demo: week2.csv</button>
-    <div class="note" id="note"></div>
+    <p class="or">Don't have it yet?</p>
+    <a class="btn block" style="width:100%" href="https://github.com/taliawu17/GCAP3226_week2/blob/main/week2.csv"
+       target="_blank" rel="noreferrer">Download week2.csv from the repo ↗</a>
+    <div class="note" id="note">Upload a CSV above — the three Week 2 charts will appear here.</div>
   </section>
 
   <!-- ================= Results ================= -->

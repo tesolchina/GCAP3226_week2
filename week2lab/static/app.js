@@ -11,7 +11,6 @@ const cardsEl = $("cards");
 const problemsEl = $("problems");
 const cautionsEl = $("cautions");
 const datasetChips = $("datasetChips");
-const demoBtn = $("demoBtn");
 
 let busy = false;
 
@@ -20,27 +19,34 @@ async function health() {
   try {
     const r = await fetch("api/health");
     const j = await r.json();
-    $("healthBadge").textContent = `demo ready: ${j.demo}`;
-    $("healthBadge").classList.add("ok");
+    if (j.ok) {
+      $("healthBadge").textContent = "lab ready";
+      $("healthBadge").classList.add("ok");
+    }
   } catch {
     $("healthBadge").textContent = "server offline";
   }
 }
 
-/* ---------- run analysis ---------- */
-async function analyse(body, filename) {
+/* ---------- run analysis (CSV body required — no demo on the server) ---------- */
+async function analyse(csvText, filename) {
+  if (!csvText) {
+    note.classList.add("err");
+    note.textContent = "Please choose a CSV file first (week2.csv downloaded from the repo).";
+    return;
+  }
   setBusy(true);
   note.classList.remove("err");
-  note.textContent = `Analysing ${filename || "demo week2.csv"} …`;
+  note.textContent = `Analysing ${filename || "your CSV"} …`;
   try {
     const r = await fetch("api/analyze", {
       method: "POST",
-      headers: body ? { "Content-Type": "text/csv" } : undefined,
-      body: body || undefined,
+      headers: { "Content-Type": "text/csv" },
+      body: csvText,
     });
     const j = await r.json();
     render(j, filename);
-    note.textContent = "";
+    note.textContent = j.ok ? "" : (j.error || "Analysis failed.");
   } catch (err) {
     note.classList.add("err");
     note.textContent = `Request failed: ${err.message}`;
@@ -51,12 +57,11 @@ async function analyse(body, filename) {
 
 function setBusy(b) {
   busy = b;
-  demoBtn.disabled = b;
-  demoBtn.style.opacity = b ? 0.6 : 1;
+  fileInput.disabled = b;
+  drop.style.opacity = b ? 0.6 : 1;
 }
 
 /* ---------- events ---------- */
-demoBtn.addEventListener("click", () => analyse(null, "week2.csv"));
 fileInput.addEventListener("change", () => {
   const f = fileInput.files && fileInput.files[0];
   if (!f) return;
@@ -133,8 +138,6 @@ function chartCard(c, i) {
     return card;
   }
 
-  const col = c.x_column ? `${c.y_column} vs ${c.x_column}` : c.column;
-
   card.innerHTML = `
     <div class="head">
       <div>
@@ -162,7 +165,6 @@ function chartCard(c, i) {
       <div class="body"><pre><code class="plain">${escapeHtml(c.pseudocode || "")}</code></pre></div>
     </details>`;
 
-  const codeBox = card.querySelector("details .pre code, details pre code");
   const pre = card.querySelector("details .body pre");
   pre.textContent = c.code; // textContent: safe, preserves exact code
   if (c.output) {
@@ -196,4 +198,4 @@ function escapeHtml(s) {
 }
 
 health();
-analyse(null, "week2.csv"); // auto-run the demo so the page is never empty
+note.textContent = "Upload week2.csv above — the three Week 2 charts will appear here.";

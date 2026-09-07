@@ -229,6 +229,11 @@ notebook output and for trying your own CSV.
    8123 is available"* → click **Open in Browser**. No pop-up? Click the
    **Ports** tab in the bottom panel → find **8123** → click the 🌐 icon.
 
+4. **Upload the data**: in the lab page, click **Download week2.csv from the
+   repo** (or use your own CSV), then drag the file onto the page or click
+   **Choose week2.csv**. The three charts appear with their code, workflow and
+   pseudocode.
+
 Stop it when done: click the terminal and press **Ctrl+C**.
 
 > **Trouble?** Wait for the first-time setup to finish (`pip install …` runs

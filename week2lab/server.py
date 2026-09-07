@@ -9,7 +9,8 @@ Routes
     GET  /                    static GUI (static/index.html)
     GET  /app.js, /style.css  static assets
     GET  /api/health          {"ok": true, "service": "week2-lab", ...}
-    POST /api/analyze         body = raw CSV text (or empty body -> demo week2.csv)
+    POST /api/analyze         body = raw CSV text of the uploaded file (required —
+                              no bundled demo; students upload week2.csv themselves)
                               -> JSON from analyze.analyse(): charts (base64 PNG),
                                  the exact code that ran, workflow, pseudocode.
 
@@ -31,9 +32,8 @@ from urllib.parse import urlparse
 
 HERE = Path(__file__).resolve().parent
 STATIC = HERE / "static"
-DEMO_CANDIDATES = [HERE / "data" / "week2.csv", HERE.parent / "week2.csv"]
 
-MAX_BODY = 12 * 1024 * 1024  # 12 MB (same ceiling as DataGuru uploads)
+MAX_BODY = 12 * 1024 * 1024  # 12 MB
 
 MIME = {
     ".html": "text/html; charset=utf-8",
@@ -44,13 +44,6 @@ MIME = {
     ".svg": "image/svg+xml",
     ".json": "application/json; charset=utf-8",
 }
-
-
-def find_demo() -> Path:
-    for p in DEMO_CANDIDATES:
-        if p.is_file():
-            return p
-    raise FileNotFoundError("week2.csv demo not found — run from the repo root or lab/.")
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -99,7 +92,6 @@ class Handler(BaseHTTPRequestHandler):
                 "ok": True,
                 "service": "week2-lab",
                 "version": "0.1.0",
-                "demo": str(find_demo().name),
             })
         if path in ("/", "/index.html"):
             return self._static("index.html")
@@ -134,15 +126,19 @@ class Handler(BaseHTTPRequestHandler):
         except ValueError as exc:
             return self._json(413, {"ok": False, "error": str(exc)})
 
+        if not raw.strip():
+            return self._json(400, {
+                "ok": False,
+                "error": "No file received. Download week2.csv from the GitHub repo "
+                         "(github.com/taliawu17/GCAP3226_week2) and upload it here.",
+            })
+
         try:
-            if raw.strip():
-                with tempfile.NamedTemporaryFile(suffix=".csv", delete=False) as fh:
-                    fh.write(raw)
-                    tmp = fh.name
-                result = analyze.analyse(tmp, filename="uploaded.csv")
-                os.unlink(tmp)
-            else:
-                result = analyze.analyse(str(find_demo()), filename=find_demo().name)
+            with tempfile.NamedTemporaryFile(suffix=".csv", delete=False) as fh:
+                fh.write(raw)
+                tmp = fh.name
+            result = analyze.analyse(tmp, filename="uploaded.csv")
+            os.unlink(tmp)
             self._json(200, result)
         except Exception as exc:  # noqa: BLE001
             self._json(500, {"ok": False, "error": f"Server error: {exc}"})
