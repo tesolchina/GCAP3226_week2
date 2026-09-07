@@ -10,18 +10,18 @@
 <header class="top">
   <div>
     <div class="kicker">GCAP 3226 · Week 2 · Data visualization</div>
-    <h1>Week 2 Lab — upload the data, read the charts, read the code.</h1>
-    <p class="sub">The plots you make in <code>W2_S2_data_visualization.ipynb</code>, without typing the code.
-      First <strong>download <code>week2.csv</code> from this GitHub repo</strong>, then upload it here.
-      The GUI writes the Python for you — then shows you the workflow and pseudocode so you can
-      write it yourself next time.</p>
+    <h1>Week 2 Lab — vibe-code your first charts, one cell at a time.</h1>
+    <p class="sub">First <strong>download <code>week2.csv</code> from this GitHub repo</strong> and upload it here.
+      Then we step through the analysis like a Jupyter notebook: the code is <strong>explained first</strong>,
+      you answer a <strong>quick check</strong>, and only then do we <strong>run the cell</strong> — just like
+      vibe-coding with Copilot in <code>W2_S2_data_visualization.ipynb</code>.</p>
   </div>
   <div class="badge" id="healthBadge">connecting…</div>
 </header>
 
 <main>
   <!-- ================= Upload ================= -->
-  <section class="rail card">
+  <section class="rail card" id="uploadRail">
     <h2>1 · Upload week2.csv</h2>
     <div id="drop" class="drop">
       <p class="drop-main">Drop the CSV here, or</p>
@@ -32,18 +32,20 @@
     <p class="or">Don't have it yet?</p>
     <a class="btn block" style="width:100%" href="https://github.com/taliawu17/GCAP3226_week2/blob/main/week2.csv"
        target="_blank" rel="noreferrer">Download week2.csv from the repo ↗</a>
-    <div class="note" id="note">Upload a CSV above — the three Week 2 charts will appear here.</div>
+    <div class="note" id="note">Upload a CSV above to start the guided notebook.</div>
   </section>
 
-  <!-- ================= Results ================= -->
+  <!-- ================= Guided notebook ================= -->
   <section class="results" id="results" hidden>
     <header class="results-head">
-      <h2>2 · Results</h2>
+      <div>
+        <h2>2 · Your guided notebook</h2>
+        <p class="sub" id="progress"></p>
+      </div>
       <div id="datasetChips" class="chips"></div>
     </header>
     <div id="problems" class="problems" hidden></div>
-    <div id="cards"></div>
-    <aside class="cautions card" id="cautions" hidden></aside>
+    <div id="notebook"></div>
   </section>
 </main>
 

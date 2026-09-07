@@ -111,3 +111,80 @@ th { color: var(--muted); font-weight: 600; }
 .cautions li { font-size: 13px; color: var(--muted); margin: 4px 0; line-height: 1.5; }
 footer { text-align: center; color: var(--muted); font-size: 12px; padding: 10px 24px 30px; }
 footer a { color: var(--primary); }
+
+/* ================= guided notebook ================= */
+#notebook { display: grid; gap: 14px; margin-top: 6px; }
+.cell {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 16px 18px; box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+}
+.cell.md { border-left: 4px solid rgba(76, 141, 255, .7); }
+.cell.question { border-left: 4px solid var(--warn); }
+.cell.code { border-left: 4px solid var(--ok); }
+.cell.done {
+  padding: 8px 14px; opacity: .75; display: flex; gap: 8px; align-items: center;
+  font-size: 13px; border-left: 4px solid rgba(61, 214, 140, .6);
+}
+.cell.done .tick { color: var(--ok); font-weight: 700; }
+.cell-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
+.cellid {
+  font-family: ui-monospace, Menlo, monospace; font-size: 12px; font-weight: 700;
+  color: var(--ok); background: rgba(61, 214, 140, .1); border: 1px solid rgba(61, 214, 140, .3);
+  border-radius: 8px; padding: 2px 8px; white-space: nowrap;
+}
+.cell.md .cellid { color: var(--primary); background: rgba(76, 141, 255, .12); border-color: rgba(76, 141, 255, .3); }
+.cell.question .cellid { color: var(--warn); background: rgba(240, 180, 41, .12); border-color: rgba(240, 180, 41, .35); }
+.cell-title { font-weight: 600; font-size: 15px; }
+.md-body p { font-size: 14px; line-height: 1.6; margin: 6px 0; color: var(--fg); }
+.md-body ul { margin: 6px 0; padding-left: 22px; }
+.md-body li { font-size: 14px; line-height: 1.6; margin: 3px 0; }
+.prompt {
+  margin-top: 10px; border: 1px dashed rgba(240, 180, 41, .5); border-radius: 10px;
+  padding: 8px 12px; background: rgba(240, 180, 41, .06);
+}
+.plabel { font-size: 12px; font-weight: 700; color: var(--warn); text-transform: uppercase; letter-spacing: .04em; }
+.prompt pre { background: transparent; padding: 6px 2px 0; color: var(--warn); }
+.code-wrap { margin-top: 10px; }
+.code-wrap pre, details pre { max-height: 340px; }
+pre.pseudo { color: #8fd0ff; }
+.mc { margin-top: 12px; }
+.mc-q { font-size: 14px; font-weight: 600; margin: 0 0 8px; }
+.opt {
+  display: block; width: 100%; text-align: left; margin: 6px 0; padding: 9px 12px;
+  background: rgba(11, 18, 32, .5); color: var(--fg); border: 1px solid var(--line);
+  border-radius: 10px; font-size: 14px; cursor: pointer;
+}
+.opt:hover { border-color: var(--primary); }
+.opt.picked { border-color: var(--primary); background: rgba(76, 141, 255, .12); }
+.opt.right { border-color: var(--ok); background: rgba(61, 214, 140, .14); }
+.opt.wrong { border-color: #ff7b72; background: rgba(255, 123, 114, .12); }
+.opt:disabled { cursor: default; opacity: .9; }
+.feedback { margin-top: 10px; padding: 9px 12px; border-radius: 10px; font-size: 13.5px; line-height: 1.55; }
+.feedback.ok { background: rgba(61, 214, 140, .12); border: 1px solid rgba(61, 214, 140, .45); }
+.feedback.bad { background: rgba(255, 123, 114, .1); border: 1px solid rgba(255, 123, 114, .4); }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; align-items: center; }
+.btn.run { background: var(--ok); color: #05281a; }
+.btn.run:hover { background: #2fbf7b; }
+.btn.next { background: rgba(76, 141, 255, .15); color: var(--primary); border: 1px solid rgba(76, 141, 255, .45); }
+.btn.submit { background: var(--warn); color: #241a02; }
+.btn:disabled { cursor: not-allowed; }
+.outbox {
+  margin-top: 12px; border: 1px solid rgba(61, 214, 140, .35); border-radius: 12px;
+  background: rgba(11, 18, 32, .55); padding: 12px 14px;
+}
+.outid {
+  font-family: ui-monospace, Menlo, monospace; font-size: 12px; font-weight: 700;
+  color: var(--ok); margin-bottom: 6px;
+}
+.out-text { max-height: 220px; }
+.fig { margin-top: 8px; background: #fff; border-radius: 10px; padding: 8px; text-align: center; }
+.fig img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+.fig .dl { display: inline-block; margin-top: 8px; }
+.after { font-size: 13.5px; color: var(--fg); margin: 10px 0 0; line-height: 1.55; }
+.done-card { text-align: center; }
+.done-card h3 { color: var(--ok); }
+.done-card p { color: var(--muted); font-size: 14px; line-height: 1.6; max-width: 640px; margin: 8px auto 16px; }
+@media (max-width: 640px) {
+  .cell { padding: 12px 12px; }
+  .code-wrap pre { font-size: 11px; }
+}

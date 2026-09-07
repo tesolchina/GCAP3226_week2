@@ -231,8 +231,12 @@ notebook output and for trying your own CSV.
 
 4. **Upload the data**: in the lab page, click **Download week2.csv from the
    repo** (or use your own CSV), then drag the file onto the page or click
-   **Choose week2.csv**. The three charts appear with their code, workflow and
-   pseudocode.
+   **Choose week2.csv**.
+
+5. **Work through the guided notebook**: the lab takes you through the code
+   **one cell at a time** — read the explanation, answer the quick-check
+   question, then press **▶ Run cell** to see the output, just like vibe-coding
+   in your notebook. Do not skip ahead!
 
 Stop it when done: click the terminal and press **Ctrl+C**.
 

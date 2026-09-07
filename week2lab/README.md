@@ -1,12 +1,19 @@
 # Week 2 Lab GUI (`week2lab/`)
 
 A small web app for the Week 2 data-visualisation lab. **Upload `week2.csv`**
-(download it from this GitHub repo first) and get the three Week 2 charts
-instantly — **bar chart → histogram → scatter** — plus, for every chart:
+(download it from this GitHub repo first) and work through the three Week 2
+charts — **bar chart → histogram → scatter** — as a **guided notebook**: one
+cell at a time, exactly like vibe-coding in `W2_S2_data_visualization.ipynb`.
 
-- the **real Python code that ran** (open it and you can copy it into your notebook),
-- the **workflow** (what the code does, step by step),
-- the **pseudocode** (the same steps in plain language).
+For every code cell you get, **before it runs**:
+
+- the **plain-language explanation** of what the code does (plus pseudocode),
+- the **Copilot-style `#` comment** (the prompt you would type),
+- the **real Python code** that will run,
+- a **multiple-choice check** on your understanding.
+
+Only after you answer do you press **▶ Run cell** — and the output appears
+like a Jupyter `Out[n]` block (printed output + chart).
 
 The code that does the analysis is `week2lab/analyze.py` — read it. It was
 adapted from the DataGuru recipe pattern (deterministic Python, JSON out),
@@ -50,13 +57,14 @@ simplified for GCAP 3226.
 
 1. Upload `week2.csv` — the same survey you use in
    `W2_S2_data_visualization.ipynb`.
-2. Compare each chart with the notebook tasks:
-   - Chart 1 = Task 2 (support bar chart)
-   - Chart 2 = Task 3 (distance histogram)
-   - Chart 3 = Task 4 (scatter: distance vs recycling effort)
-3. Upload your **own** CSV — the GUI picks sensible columns automatically and
-   tells you which columns it used.
-4. Download any chart as a PNG (like Task 5) and use the code in the notebook.
+2. Take it one cell at a time: **read the explanation → answer the quick
+   check → ▶ Run cell → check the output**, like a notebook. Do **not** skip
+   ahead — predicting the output is where the learning happens.
+3. The cells mirror the notebook tasks: load → support bar chart (Task 2) →
+   distance histogram (Task 3) → scatter distance vs recycling effort
+   (Task 4) → the anti-claim check.
+4. Save any chart as a PNG when you reach it (like Task 5), then repeat the
+   same cells for real in `W2_S2_data_visualization.ipynb`.
 
 ## Files
 
