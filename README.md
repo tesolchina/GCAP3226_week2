@@ -206,6 +206,22 @@ Remember: **Commit** = stamp this version on the Codespace; **Push** = send thos
 You only push to **your fork**, never the instructor’s original repo.
 ---
 
+## Optional — Week 2 Lab GUI (no code needed)
+
+There is also a small web GUI in the `lab/` folder. It makes the same three
+charts as this notebook (support bar → distance histogram → scatter) from a
+CSV you upload — and, for each chart, shows you the **real Python code that
+ran**, the **workflow**, and the **pseudocode**.
+
+```bash
+python3 lab/server.py
+```
+
+Then open **http://localhost:8123** (Codespaces shows a *Forwarded Ports*
+pop-up — click **Open in Browser**). See `lab/README.md` for details.
+
+---
+
 ## Next week (Week 3)
 
 Fork the **Week 3 repo** → Codespace → regression notebooks.  
