@@ -1,4 +1,4 @@
-# Week 2 Lab GUI (`lab/`)
+# Week 2 Lab GUI (`week2lab/`)
 
 A small web app for the Week 2 data-visualisation lab. Upload the course survey
 (or your own CSV) and get the three Week 2 charts instantly — **bar chart →
@@ -8,22 +8,35 @@ histogram → scatter** — plus, for every chart:
 - the **workflow** (what the code does, step by step),
 - the **pseudocode** (the same steps in plain language).
 
-The code that does the analysis is `lab/analyze.py` — read it. It was adapted
-from the DataGuru recipe pattern (deterministic Python, JSON out), simplified for
-GCAP 3226.
+The code that does the analysis is `week2lab/analyze.py` — read it. It was
+adapted from the DataGuru recipe pattern (deterministic Python, JSON out),
+simplified for GCAP 3226.
 
 ## Run it in your Codespace
 
-```bash
-python3 lab/server.py
-```
+1. Make sure you are in a **Codespace from your fork** of this repo
+   (if you are new: Code → Codespaces → Create codespace on main).
+   Wait until setup finishes — `pip install -r requirements.txt` runs
+   automatically the first time.
+2. Open a terminal: **Terminal → New Terminal**.
+3. Start the lab:
 
-Then open **http://localhost:8123** in your browser (Codespaces shows a
-"Forwarded Ports" pop-up — click *Open in Browser*).
+   ```bash
+   python3 week2lab/server.py
+   ```
 
-That's it: no extra install. The server uses only the Python standard library;
-`pandas` and `matplotlib` come from this repo's `requirements.txt`, which your
-Codespace already installed (`postCreateCommand`).
+   You should see:
+   `Week 2 Lab GUI → http://localhost:8123`
+4. Open the browser: Codespaces usually pops up *"Your application running on
+   port 8123 is available"* → click **Open in Browser**.
+   No pop-up? Click the **Ports** tab in the bottom panel (or
+   **Terminal → Ports**), find **8123**, and click the 🌐 icon.
+
+5. Stop the server when done: click in the terminal and press **Ctrl+C**.
+
+> **First time slow?** Codespaces is still installing the Python packages the
+> first time you open it. If `import pandas` fails inside the lab, wait for the
+> setup to finish, then restart the server (`Ctrl+C`, run step 3 again).
 
 ## What to try
 
@@ -41,7 +54,7 @@ Codespace already installed (`postCreateCommand`).
 
 | File | Role |
 |---|---|
-| `server.py` | Web server (Python stdlib only). Routes: `/` (GUI), `/api/health`, `POST /api/analyze` (CSV body, or empty → demo). |
+| `server.py` | Web server (Python standard library only). Routes: `/` (GUI), `/api/health`, `POST /api/analyze` (CSV body, or empty → demo). |
 | `analyze.py` | The analysis code behind the scenes: load CSV → pick columns → 3 charts → JSON with base64 PNGs + code + workflow + pseudocode. |
 | `static/` | The GUI (HTML/CSS/JS, no build step). |
 | `data/week2.csv` | Copy of the demo survey (so the lab also runs standalone). |
@@ -49,6 +62,6 @@ Codespace already installed (`postCreateCommand`).
 ## Notes
 
 - Everything runs **locally in your browser + Codespace** — no data leaves your
-  machine (unlike hosted tools). Good for privacy when students use their own data.
+  machine (good for privacy when students use their own data).
 - `POST /api/analyze` accepts the raw CSV as the request body
   (`Content-Type: text/csv`), or an empty body for the demo dataset.

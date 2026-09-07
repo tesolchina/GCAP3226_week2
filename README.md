@@ -206,19 +206,37 @@ Remember: **Commit** = stamp this version on the Codespace; **Push** = send thos
 You only push to **your fork**, never the instructor’s original repo.
 ---
 
-## Optional — Week 2 Lab GUI (no code needed)
+## Optional — Week 2 Lab GUI (make the three charts without typing code)
 
-There is also a small web GUI in the `lab/` folder. It makes the same three
-charts as this notebook (support bar → distance histogram → scatter) from a
-CSV you upload — and, for each chart, shows you the **real Python code that
-ran**, the **workflow**, and the **pseudocode**.
+There is also a small **web GUI** in the `week2lab/` folder. It makes the same
+three charts as this notebook (support bar → distance histogram → scatter) from
+a CSV you upload — and, for each chart, shows you the **real Python code that
+ran**, the **workflow**, and the **pseudocode**. Useful for checking your own
+notebook output and for trying your own CSV.
 
-```bash
-python3 lab/server.py
-```
+### Run it in your Codespace (3 steps)
 
-Then open **http://localhost:8123** (Codespaces shows a *Forwarded Ports*
-pop-up — click **Open in Browser**). See `lab/README.md` for details.
+1. **Open a terminal**: `Terminal → New Terminal` (bottom panel).
+2. **Start the lab**:
+
+   ```bash
+   python3 week2lab/server.py
+   ```
+
+   You should see: `Week 2 Lab GUI → http://localhost:8123`
+
+3. **Open in browser**: Codespaces shows *"Your application running on port
+   8123 is available"* → click **Open in Browser**. No pop-up? Click the
+   **Ports** tab in the bottom panel → find **8123** → click the 🌐 icon.
+
+Stop it when done: click the terminal and press **Ctrl+C**.
+
+> **Trouble?** Wait for the first-time setup to finish (`pip install …` runs
+> automatically). If a chart says imports failed, restart the server:
+> `Ctrl+C`, then run step 2 again.
+
+Full details: [`week2lab/README.md`](week2lab/README.md). The analysis code is
+`week2lab/analyze.py` — read it to see what the GUI does.
 
 ---
 
